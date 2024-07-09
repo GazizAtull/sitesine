@@ -1,0 +1,12 @@
+{
+  "name": "wallet-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api/connect.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2"
+  }
+}
